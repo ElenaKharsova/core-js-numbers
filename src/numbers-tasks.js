@@ -49,10 +49,9 @@ function getCircleCircumference(radius) {
  *  10, 0  => 5
  *  -3, 3  => 0
  */
-function getAverage(/* value1, value2 */) {
-  // const aver = (value1 + value2) / 2;
-  // return aver;
-  throw new Error('Not implemented');
+function getAverage(value1, value2) {
+  const aver = value1 / 2 + value2 / 2;
+  return aver;
 }
 
 /**
@@ -107,13 +106,16 @@ function getLinearEquationRoot(a, b) {
  *   (0,-1) (1,0)    => π/2
  *   (0,1) (0,1)     => 0
  */
-function getAngleBetweenVectors(/* x1, y1, x2, y2) */) {
+function getAngleBetweenVectors(/* x1, y1, x2, y2 */) {
+  // const numerator = x1 * y1 + x2 * y2;
+  // const vec1 = Math.sqrt(x1 ** 2 + x2 ** 2);
+  // const vec2 = Math.sqrt(y1 ** 2 + y2 ** 2);
+  // const denominator = vec1 * vec2;
+  // return numerator / denominator;
   throw new Error('Not implemented');
 }
 
 /**
- * return
- *  (x1 * y1 + x2 * y2)/(Math.sqrt(x1 ** 2 + x2 ** 2) * Math.sqrt(y1 ** 2 + y2 ** 2));
  * Returns a last digit of a integer number.
  * The input parameter will always be greater than or equal to zero and will be in decimal notation.
  *
@@ -232,8 +234,8 @@ function isPrime(n) {
  *   toNumber(42, 0) => 42
  *   toNumber(new Number(42), 0) => 42
  */
-function toNumber(/* value, def */) {
-  throw new Error('Not implemented');
+function toNumber(value, def) {
+  return Number(value) ? Number(value) : def;
 }
 
 /**
@@ -264,8 +266,22 @@ function getCube(num) {
  *   3  => 2
  *   10 => 55
  */
-function getFibonacciNumber(/* index */) {
-  throw new Error('Not implemented');
+function getFibonacciNumber(index) {
+  if (index === 0) {
+    return 0;
+  }
+  if (index === 1) {
+    return 1;
+  }
+  let fibonacci = 1;
+  let fibonacciPrev = 0;
+  for (let i = 1; i < index; i += 1) {
+    const tmp = fibonacci;
+    fibonacci += fibonacciPrev;
+    fibonacciPrev = tmp;
+  }
+
+  return fibonacci;
 }
 
 /**
@@ -296,7 +312,11 @@ function getSumToN(n) {
  *   5   => 5  // 5
  */
 function getSumOfDigits(num) {
-  return Math.sum(num.toString().split('').map(toNumber));
+  return num
+    .toString()
+    .split('')
+    .map((el) => +el)
+    .reduce((acc, el) => el + acc);
 }
 
 /**
@@ -331,8 +351,8 @@ function isPowerOfTwo(num) {
  *   0 => 0
  *   Math.PI / 2 => 1
  */
-function getSine(/* num */) {
-  throw new Error('Not implemented');
+function getSine(num) {
+  return Math.sin(num);
 }
 
 /**
@@ -375,8 +395,8 @@ function toExponential(number, fractionDigits) {
  * 12345, 2    => '12345.00'
  * 12.345, 1   => '12.3'
  */
-function toFixed(/* number, fractionDigits */) {
-  throw new Error('Not implemented');
+function toFixed(number, fractionDigits) {
+  return number.toFixed(fractionDigits);
 }
 
 /**
@@ -391,8 +411,8 @@ function toFixed(/* number, fractionDigits */) {
  * 12345, 7    => '12345.00'
  * 12.345, 4   => '12.35'
  */
-function toPrecision(/* number, precision */) {
-  throw new Error('Not implemented');
+function toPrecision(number, precision) {
+  return number.toPrecision(precision);
 }
 
 /**
@@ -404,6 +424,7 @@ function toPrecision(/* number, precision */) {
  * @example:
  * new Number(5) => 5
  * Number(-5)    => -5
+ *   // return Number.valueOf(number);
  */
 function getNumberValue(/* number */) {
   throw new Error('Not implemented');
