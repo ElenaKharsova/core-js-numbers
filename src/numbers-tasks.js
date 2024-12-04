@@ -424,10 +424,9 @@ function toPrecision(number, precision) {
  * @example:
  * new Number(5) => 5
  * Number(-5)    => -5
- *   // return Number.valueOf(number);
  */
-function getNumberValue(/* number */) {
-  throw new Error('Not implemented');
+function getNumberValue(number) {
+  return number.valueOf();
 }
 
 /**
@@ -445,8 +444,8 @@ function getNumberValue(/* number */) {
  * 5        => true
  * '5'      => false
  */
-function isNumber(/* number */) {
-  throw new Error('Not implemented');
+function isNumber(number) {
+  return Number.isFinite(number);
 }
 
 /**
@@ -460,8 +459,8 @@ function isNumber(/* number */) {
  * 5.1  => false
  * '5'  => false
  */
-function isInteger(/* number */) {
-  throw new Error('Not implemented');
+function isInteger(number) {
+  return Number.isInteger(number);
 }
 
 /**
@@ -474,8 +473,8 @@ function isInteger(/* number */) {
  * '4.567abcdefgh' => 4.567
  * 'abcdefgh'      => NaN
  */
-function getFloatOnString(/* str */) {
-  throw new Error('Not implemented');
+function getFloatOnString(str) {
+  return Number.parseFloat(str);
 }
 
 /**
@@ -491,6 +490,7 @@ function getFloatOnString(/* str */) {
  * 'abcdefgh', 10       => NaN
  * '1.234', 2           => 1
  * '10', 8              => 8
+ *   // return Number.valueOf(str).toString(base);
  */
 function getIntegerOnString(/* str, base */) {
   throw new Error('Not implemented');
@@ -506,6 +506,9 @@ function getIntegerOnString(/* str, base */) {
  * 10       => true
  * 3.5      => false
  * 2 ** 53  => false
+ *   // const SAFE_INTEGER = 2 ** 53 - 1;
+ * // return number >= -1 * SAFE_INTEGER && number <= SAFE_INTEGER;
+ * // return number >= Number.MIN_SAFE_INTEGER && number <= Number.MAX_SAFE_INTEGER;
  */
 function isSafeInteger(/* number */) {
   throw new Error('Not implemented');
@@ -565,8 +568,8 @@ function roundToNearestInteger(/* number */) {
  * 5.4  => 5
  * -5.5 => -5
  */
-function getIntegerPartNumber(/* number */) {
-  throw new Error('Not implemented');
+function getIntegerPartNumber(number) {
+  return Math.trunc(number);
 }
 
 /**
@@ -581,8 +584,8 @@ function getIntegerPartNumber(/* number */) {
  * 1, 2, 3       => 6
  * 0.1, 0.2, 0.3 => 0.6
  */
-function getSumOfNumbers(/* x1, x2, x3 */) {
-  throw new Error('Not implemented');
+function getSumOfNumbers(x1, x2, x3) {
+  return (x1 + x2 + x3).toPrecision(5);
 }
 
 /**
@@ -597,8 +600,8 @@ function getSumOfNumbers(/* x1, x2, x3 */) {
  * -5, -6 => -5
  * 0, 5   => 5
  */
-function getMaxNumber(/* firstNumber, secondNumber */) {
-  throw new Error('Not implemented');
+function getMaxNumber(firstNumber, secondNumber) {
+  return Math.max(firstNumber, secondNumber);
 }
 
 /**
@@ -626,6 +629,7 @@ function getRandomInteger(/* min, max */) {
  *
  * @example:
  * 3, 4 => 5
+ *   // return (a * a + b * b) ** (1 / 2);
  */
 function getHypotenuse(/* a, b */) {
   throw new Error('Not implemented');
@@ -644,8 +648,22 @@ function getHypotenuse(/* a, b */) {
  * 10 => 5
  * 15 => 8
  */
-function getCountOfOddNumbers(/* number */) {
-  throw new Error('Not implemented');
+function getCountOfOddNumbers(number) {
+  let i;
+  let count = 0;
+  const numberAbs = Math.abs(number);
+
+  if (numberAbs % 2 === 0) {
+    i = 2;
+  } else {
+    i = 1;
+  }
+
+  while (i <= numberAbs) {
+    i += 2;
+    count += 1;
+  }
+  return count;
 }
 
 module.exports = {
