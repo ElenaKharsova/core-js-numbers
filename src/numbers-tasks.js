@@ -106,13 +106,11 @@ function getLinearEquationRoot(a, b) {
  *   (0,-1) (1,0)    => π/2
  *   (0,1) (0,1)     => 0
  */
-function getAngleBetweenVectors(/* x1, y1, x2, y2 */) {
-  // const numerator = x1 * y1 + x2 * y2;
-  // const vec1 = Math.sqrt(x1 ** 2 + x2 ** 2);
-  // const vec2 = Math.sqrt(y1 ** 2 + y2 ** 2);
-  // const denominator = vec1 * vec2;
-  // return numerator / denominator;
-  throw new Error('Not implemented');
+function getAngleBetweenVectors(x1, y1, x2, y2) {
+  return Math.acos(
+    (x1 * x2 + y1 * y2) /
+      (Math.sqrt(x1 ** 2 + y1 ** 2) * Math.sqrt(x2 ** 2 + y2 ** 2))
+  );
 }
 
 /**
@@ -629,10 +627,9 @@ function getRandomInteger(/* min, max */) {
  *
  * @example:
  * 3, 4 => 5
- *   // return (a * a + b * b) ** (1 / 2);
  */
-function getHypotenuse(/* a, b */) {
-  throw new Error('Not implemented');
+function getHypotenuse(a, b) {
+  return Math.hypot(a, b);
 }
 
 /**
