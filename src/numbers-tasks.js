@@ -610,9 +610,10 @@ function getMaxNumber(firstNumber, secondNumber) {
  * -5, 0 => -5 | -4 | -3 | -2 | -1 | 0
  * -1, 1 => -1 | 0 | 1
  */
-function getRandomInteger(/* min, max */) {
-  // return Math.ceil(Math.random() * max);
-  throw new Error('Not implemented');
+function getRandomInteger(min, max) {
+  const minR = Math.floor(min);
+  const maxR = Math.ceil(max);
+  return Math.floor(Math.random() * (maxR - minR)) + min;
 }
 
 /**
